@@ -24,7 +24,11 @@ public class WebSecurityConfig {
             "/fonts**", "/favicon.ico", "/resources/**", "/error"};
 
     @Bean
-    protected SecurityFilterChain securityFilterChain(HttpSecurity http){
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+       http.authorizeHttpRequests(auth-> {
+           auth.requestMatchers(publicUrl).permitAll();
+           auth.anyRequest().authenticated();
+       });
         return http.build();
     }
 }
