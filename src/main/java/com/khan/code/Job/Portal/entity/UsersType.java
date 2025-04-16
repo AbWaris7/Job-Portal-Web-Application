@@ -1,18 +1,20 @@
 package com.khan.code.Job.Portal.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
+
 
 @Entity
 @Table(name = "users_type")
 public class UsersType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userTypeId;
 
+    @Column(name = "user_type_name")
     private String userTypeName;
+
     @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
     private List<Users> users;
 
