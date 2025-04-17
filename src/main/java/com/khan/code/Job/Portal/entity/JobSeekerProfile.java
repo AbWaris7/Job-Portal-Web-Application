@@ -24,10 +24,12 @@ public class JobSeekerProfile {
     private String workAuthorization;
     private String employmentType;
     private String resume;
+
     @Column(nullable = true, length = 64)
     private String profilePhoto;
-    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobsSeekerProfile")
-    private List<Skills> skills;;
+
+    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
+    private List<Skills> skills;
 
     public JobSeekerProfile() {
     }
