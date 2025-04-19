@@ -60,6 +60,102 @@ public class JobPostActivity {
         this.jobTitle = jobTitle;
     }
 
+    public Integer getJobPostId() {
+        return jobPostId;
+    }
+
+    public void setJobPostId(Integer jobPostId) {
+        this.jobPostId = jobPostId;
+    }
+
+    public Users getPostedById() {
+        return postedById;
+    }
+
+    public void setPostedById(Users postedById) {
+        this.postedById = postedById;
+    }
+
+    public JobLocation getJobLocationId() {
+        return jobLocationId;
+    }
+
+    public void setJobLocationId(JobLocation jobLocationId) {
+        this.jobLocationId = jobLocationId;
+    }
+
+    public JobCompany getJobCompany() {
+        return jobCompany;
+    }
+
+    public void setJobCompany(JobCompany jobCompany) {
+        this.jobCompany = jobCompany;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Boolean getSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(Boolean saved) {
+        isSaved = saved;
+    }
+
+    public @Length(max = 10000) String getDescriptionOfJob() {
+        return descriptionOfJob;
+    }
+
+    public void setDescriptionOfJob(@Length(max = 10000) String descriptionOfJob) {
+        this.descriptionOfJob = descriptionOfJob;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getRemote() {
+        return remote;
+    }
+
+    public void setRemote(String remote) {
+        this.remote = remote;
+    }
+
+    public Date getPostedDate() {
+        return postedDate;
+    }
+
+    public void setPostedDate(Date postedDate) {
+        this.postedDate = postedDate;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
     @Override
     public String toString() {
         return "JobPostActivity{" +

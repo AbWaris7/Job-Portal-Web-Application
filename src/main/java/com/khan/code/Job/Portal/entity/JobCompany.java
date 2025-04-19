@@ -1,8 +1,6 @@
 package com.khan.code.Job.Portal.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 public class JobCompany {
@@ -13,6 +11,8 @@ public class JobCompany {
 
     private String name;
     private String logo;
+    @jakarta.persistence.Id
+    private Long id;
 
     public JobCompany() {
     }
@@ -30,5 +30,13 @@ public class JobCompany {
                 ", name='" + name + '\'' +
                 ", logo='" + logo + '\'' +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
