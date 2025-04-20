@@ -1,5 +1,6 @@
 package com.khan.code.Job.Portal.entity;
 
+
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-
 public class JobPostActivity {
 
     @Id
@@ -23,8 +23,8 @@ public class JobPostActivity {
     private JobLocation jobLocationId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "jobCompanyId", referencedColumnName = "id")
-    private JobCompany jobCompany;
+    @JoinColumn(name = "jobCompanyId", referencedColumnName = "Id")
+    private JobCompany jobCompanyId;
 
     @Transient
     private Boolean isActive;
@@ -38,6 +38,7 @@ public class JobPostActivity {
     private String jobType;
     private String salary;
     private String remote;
+
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date postedDate;
     private String jobTitle;
@@ -45,11 +46,11 @@ public class JobPostActivity {
     public JobPostActivity() {
     }
 
-    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompany, Boolean isActive, Boolean isSaved, String descriptionOfJob, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
+    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompanyId, Boolean isActive, Boolean isSaved, String descriptionOfJob, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
         this.jobPostId = jobPostId;
         this.postedById = postedById;
         this.jobLocationId = jobLocationId;
-        this.jobCompany = jobCompany;
+        this.jobCompanyId = jobCompanyId;
         this.isActive = isActive;
         this.isSaved = isSaved;
         this.descriptionOfJob = descriptionOfJob;
@@ -84,12 +85,12 @@ public class JobPostActivity {
         this.jobLocationId = jobLocationId;
     }
 
-    public JobCompany getJobCompany() {
-        return jobCompany;
+    public JobCompany getJobCompanyId() {
+        return jobCompanyId;
     }
 
-    public void setJobCompany(JobCompany jobCompany) {
-        this.jobCompany = jobCompany;
+    public void setJobCompanyId(JobCompany jobCompanyId) {
+        this.jobCompanyId = jobCompanyId;
     }
 
     public Boolean getActive() {
@@ -108,11 +109,11 @@ public class JobPostActivity {
         isSaved = saved;
     }
 
-    public @Length(max = 10000) String getDescriptionOfJob() {
+    public String getDescriptionOfJob() {
         return descriptionOfJob;
     }
 
-    public void setDescriptionOfJob(@Length(max = 10000) String descriptionOfJob) {
+    public void setDescriptionOfJob(String descriptionOfJob) {
         this.descriptionOfJob = descriptionOfJob;
     }
 
@@ -162,7 +163,7 @@ public class JobPostActivity {
                 "jobPostId=" + jobPostId +
                 ", postedById=" + postedById +
                 ", jobLocationId=" + jobLocationId +
-                ", jobCompany=" + jobCompany +
+                ", jobCompanyId=" + jobCompanyId +
                 ", isActive=" + isActive +
                 ", isSaved=" + isSaved +
                 ", descriptionOfJob='" + descriptionOfJob + '\'' +

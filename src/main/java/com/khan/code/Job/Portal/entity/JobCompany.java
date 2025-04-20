@@ -1,42 +1,59 @@
 package com.khan.code.Job.Portal.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class JobCompany {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     private String name;
     private String logo;
-    @jakarta.persistence.Id
-    private Long id;
 
     public JobCompany() {
     }
 
     public JobCompany(Integer id, String name, String logo) {
-        Id = id;
+        this.id = id;
         this.name = name;
+        this.logo = logo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 
     @Override
     public String toString() {
         return "JobCompany{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", logo='" + logo + '\'' +
                 '}';
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
