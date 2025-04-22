@@ -8,8 +8,10 @@ import com.khan.code.Job.Portal.repository.IRecruiterJob;
 import com.khan.code.Job.Portal.repository.JobPostActivityRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class JobPostActivityService {
@@ -45,5 +47,14 @@ public class JobPostActivityService {
 
         return jobPostActivityRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
 
+    }
+
+    public List<JobPostActivity> getAll() {
+        return jobPostActivityRepository.findAll();
+    }
+
+    public List<JobPostActivity> search(String job, String location, List<String> type, List<String> remote, LocalDate searchDate) {
+        return Objects.isNull(searchDate) ? jobPostActivityRepository.searchWithoutDate(job, location, remote,type) :
+                jobPostActivityRepository.search(job, location, remote, type, searchDate);
     }
 }

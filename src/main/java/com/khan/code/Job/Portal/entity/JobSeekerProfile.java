@@ -149,12 +149,11 @@ public class JobSeekerProfile {
         this.skills = skills;
     }
 
+
     @Transient
     public String getPhotosImagePath() {
-        if(profilePhoto!=null  || userAccountId == null) {
-            return null;
-        }
-        return "/photo/candidate/"+userAccountId+"/"+profilePhoto;
+        if(profilePhoto!=null  || userAccountId == null)  return null;
+        return "photo/candidate/"+userAccountId+"/"+ profilePhoto;
     }
 
     @Override
