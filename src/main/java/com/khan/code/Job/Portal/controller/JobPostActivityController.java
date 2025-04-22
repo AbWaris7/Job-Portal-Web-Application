@@ -27,12 +27,14 @@ public class JobPostActivityController {
     private final UserService usersService;
     private final JobPostActivityService jobPostActivityService;
     private final JobSeekerApplyService jobSeekerApplyService;
+    private final JobSeekerSaveService jobSeekerSaveService;
 
     @Autowired
-    public JobPostActivityController(UserService usersService, JobPostActivityService jobPostActivityService, JobSeekerApplyService jobSeekerApplyService) {
+    public JobPostActivityController(UserService usersService, JobPostActivityService jobPostActivityService, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService) {
         this.usersService = usersService;
         this.jobPostActivityService = jobPostActivityService;
         this.jobSeekerApplyService = jobSeekerApplyService;
+        this.jobSeekerSaveService = jobSeekerSaveService;
     }
 
     @GetMapping("/dashboard/")
@@ -114,6 +116,41 @@ public class JobPostActivityController {
             } else {
 
                 List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getCandidatesJobs((JobSeekerProfile)  currentUserProfile);
+                List<JobSeekerSave> jobSeekerSaveList =   jobSeekerSaveService.getCandidatesJob((JobSeekerProfile) currentUserProfile);
+
+                boolean exist;
+                boolean saved;
+
+                for(JobPostActivity jobActivity : jobPost) {
+                    exist = false;
+                    saved = false;
+
+                    for(JobSeekerApply jobSeekerApply : jobSeekerApplyList) {
+                        if(Objects.equals(jobActivity.getJobPostId(), jobSeekerApply.getJob().getJobPostId())) {
+                            jobActivity.setIsActive(true);
+                            exist = true;
+                            break;
+                        }
+
+                    }
+                    for(JobSeekerSave jobSeekerSave : jobSeekerSaveList) {
+                        if(Objects.equals(jobActivity.getJobPostId(), jobSeekerSave.getJob().getJobPostId())) {
+                            jobActivity.setIsSaved(true);
+                            saved = true;
+                            break;
+                        }
+                    }
+
+                    if(!exist) {
+
+                        jobActivity.setIsSaved(false);
+                    }
+
+                    if(!saved) {
+                        jobActivity.setIsActive(false);
+                    }
+                    model.addAttribute("jobPost", jobPost);
+                }
             }
         }
 
